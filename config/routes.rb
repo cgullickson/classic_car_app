@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :cars
   end
+
+  resources :cars do
+    resources :awards
+  end
 end

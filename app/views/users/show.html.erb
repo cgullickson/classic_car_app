@@ -8,10 +8,20 @@
       <li><%= car.make %></li>
       <li><%= car.model %></li>
       <li><%= car.year %></li>
+      <% if car.awards.any? %>
+      <li>Awards:</li>
+      <% end %>
+        <% car.awards.each do |award| %>
+          <li><%= award.title %></li>
+          <li><%= award.year %></li>
+          <li><%= award.description %></li>
+          <%end%>
       <button class="btn btn-default"><%= link_to 'Edit', edit_car_path(car) %></button>
       <button class="btn btn-default"><%= link_to 'Delete', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-    <%end%>
+      <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
+
   <%end%>
+<%end%>
 </ul>
 
 <% if user_signed_in? %>

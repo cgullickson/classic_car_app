@@ -2,9 +2,9 @@
 <h1> All Cars: </h1>
 
 <% @cars.each do |car| %>
-  <h2> <%= link_to "#{@car.make} #{@car.model}", car_path(@car) %></h2>
-  <h2> <%= @car.year%></h2>
-  <h2> <%= @car.color %></h2>
-  <h2> <%= @car.user.email %></h2>
+  <h2> <%= link_to "#{car.make} #{car.model}", car_path(car) %></h2>
+  <h2> <%= car.year%></h2>
+  <h2> <%= car.color %></h2>
+  <h2> <%= car.user.email %></h2>
   <br><br>
 <% end %>

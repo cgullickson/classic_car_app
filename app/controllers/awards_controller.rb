@@ -1,8 +1,10 @@
 class AwardsController < ApplicationController
-  before_action :set_award, only: [:show, :create]
+  before_action :set_award, only: [:show]
+  before_action :set_car, only: [:new, :create]
+
 
   def new
-    @award = Award.new
+    @award = @car.awards.new
   end
 
   def index
@@ -10,12 +12,10 @@ class AwardsController < ApplicationController
   end
 
   def create
-    if @award.valid?
-      @award.save
-      redirect_to award_path(@award)
-    else
-      render :new
-    end
+    @award = @car.awards.new(award_params)
+    @award.save
+
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -26,11 +26,11 @@ class AwardsController < ApplicationController
 
   private
 
-  def set_award
-    @award = Award.find(params[:id])
+  def award_params
+    params.require(:award).permit(:title, :year, :description)
   end
 
-  def award_params
-    params.require[:award].permit(:make,:model,:year,:color)
+  def set_car
+    @car = Car.find_by(params[:id])
   end
 end

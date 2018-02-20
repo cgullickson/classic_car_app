@@ -1,0 +1,14 @@
+<%= form_for @award do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :year %>
+  <%= f.text_field :year %><br>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %><br>
+
+  <%= f.submit %>
+
+<%end%>
