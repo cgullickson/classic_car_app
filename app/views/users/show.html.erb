@@ -1,0 +1,19 @@
+<%= render 'layouts/header' %>
+<h1>Your Cars</h1>
+
+<ul>
+  <% if user_signed_in? %>
+    <% current_user.cars.each do |car| %>
+      <li><%= car.color %></li>
+      <li><%= car.make %></li>
+      <li><%= car.model %></li>
+      <li><%= car.year %></li>
+      <button class="btn btn-default"><%= link_to 'Edit', edit_car_path(car) %></button>
+      <button class="btn btn-default"><%= link_to 'Delete', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
+    <%end%>
+  <%end%>
+</ul>
+
+<% if user_signed_in? %>
+  <button class="btn btn-default"><%=link_to "Add a car", new_user_car_path(current_user)%></button>
+<%end%>

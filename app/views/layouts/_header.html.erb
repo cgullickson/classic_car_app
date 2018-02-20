@@ -1,0 +1,13 @@
+
+<h1>Classic Car Collections</h1>
+
+<button class="btn btn-default"><%= link_to "Home", root_path %></button>
+
+<% if user_signed_in? %>
+  <button class="btn btn-default"><%= link_to "My cars", user_path(current_user) %></button>
+  <button class="btn btn-default"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></button><br><br>
+  <%= "Signed in as #{current_user.email}" %><br>
+<% else %>
+  <button class="btn btn-default"><%= link_to "Sign Up", new_user_registration_path %></button>
+  <button class="btn btn-default"><%= link_to "Sign In", new_user_session_path %></button>
+<% end %>
