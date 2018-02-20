@@ -1,20 +1,20 @@
 <%= render 'layouts/header' %>
-<h1>Your Cars</h1>
+<h1>Your Cars:</h1>
 
 <ul>
   <% if user_signed_in? %>
     <% current_user.cars.each do |car| %>
-      <li><%= car.color %></li>
-      <li><%= car.make %></li>
-      <li><%= car.model %></li>
-      <li><%= car.year %></li>
+    <h2> <%= "#{car.make} #{car.model}"%></h2>
+    <h2> <%= car.year%></h2>
+    <h2> <%= car.color %></h2>
       <% if car.awards.any? %>
-      <li>Awards:</li>
+      <h2>Awards:</h2>
       <% end %>
         <% car.awards.each do |award| %>
           <li><%= award.title %></li>
           <li><%= award.year %></li>
           <li><%= award.description %></li>
+          <li><button class="btn btn-default"><%= link_to 'Delete Award', award,  :data => {:confirm => "You Sure?", :method => :delete}  %></button></li><br>
           <%end%>
       <button class="btn btn-default"><%= link_to 'Edit', edit_car_path(car) %></button>
       <button class="btn btn-default"><%= link_to 'Delete', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>

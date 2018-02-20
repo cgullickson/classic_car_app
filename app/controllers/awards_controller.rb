@@ -1,6 +1,5 @@
 class AwardsController < ApplicationController
-  before_action :set_award, only: [:show]
-  before_action :set_car, only: [:new, :create]
+  before_action :set_car, only: [:new, :create, :destroy]
 
 
   def new
@@ -14,7 +13,6 @@ class AwardsController < ApplicationController
   def create
     @award = @car.awards.new(award_params)
     @award.save
-
     redirect_to user_path(current_user)
   end
 
@@ -22,6 +20,9 @@ class AwardsController < ApplicationController
   end
 
   def destroy
+    @award = @car.awards.find(params[:id])
+    @award.destroy
+    redirect_to user_path(current_user)
   end
 
   private
