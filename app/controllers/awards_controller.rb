@@ -4,6 +4,7 @@ class AwardsController < ApplicationController
 
   def new
     @award = @car.awards.new
+    2.times {@award.categories.build}
   end
 
   def index
@@ -12,8 +13,12 @@ class AwardsController < ApplicationController
 
   def create
     @award = @car.awards.new(award_params)
-    @award.save
-    redirect_to user_path(current_user)
+    if @award.valid?
+      @award.save
+      redirect_to user_path(current_user)
+    else
+      render :new
+    end
   end
 
   def show
@@ -28,7 +33,7 @@ class AwardsController < ApplicationController
   private
 
   def award_params
-    params.require(:award).permit(:title, :year, :description)
+    params.require(:award).permit(:title, :description, categories_attributes: [:id, :name, :_destroy])
   end
 
   def set_car

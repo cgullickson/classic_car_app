@@ -1,13 +1,32 @@
 <%= form_for [@car, @award] do |f| %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %><br>
+<% if @award.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@award.errors.count, "error") %> prohibited this award from being saved:</h2>
 
-  <%= f.label :year %>
-  <%= f.text_field :year %><br>
+    <ul>
+    <% @award.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br><br><br>
 
   <%= f.label :description %>
-  <%= f.text_area :description %><br>
+  <%= f.text_area :description %><br><br><br>
+
+  Categories:
+  <ul>
+    <%= f.fields_for :categories do |categories_form| %>
+      <li>
+        <%= categories_form.label :name %>
+        <%= categories_form.text_field :name %>
+      </li>
+    <% end %>
+  </ul>
 
   <%= f.submit %>
 

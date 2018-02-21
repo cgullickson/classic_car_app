@@ -12,9 +12,13 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.save
     current_user.cars << @car
-    redirect_to current_user, :flash => { :success => "car created!" }
+    if @car.valid?
+      @car.save
+      redirect_to current_user
+    else
+      render :new
+    end
   end
 
   def edit
