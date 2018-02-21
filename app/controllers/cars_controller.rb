@@ -7,7 +7,7 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.all
+    @cars = Car.made_before(1980)
   end
 
   def create

@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221183858) do
+ActiveRecord::Schema.define(version: 20180221205715) do
+
+  create_table "award_categories", force: :cascade do |t|
+    t.integer "award_id"
+    t.integer "category_id"
+  end
 
   create_table "awards", force: :cascade do |t|
     t.string "title"

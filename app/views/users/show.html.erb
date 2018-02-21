@@ -10,13 +10,16 @@
       <% if car.awards.any? %>
       <h2>Awards:</h2>
       <% end %>
-        <% car.awards.each do |award| %>
+          <% car.awards.each do |award| %>
           <li><%= award.title %></li>
           <li><%= award.description %></li>
-          <% award.categories.each do |category| %>
-          <li><%= category.name %></li>
-          <%end%>
-          <li><button class="btn btn-default"><%= link_to 'Delete Award', award,  :data => {:confirm => "You Sure?", :method => :delete}  %></button></li><br>
+            <% if award.categories.any? %><br>
+            <p>Categories:</p><br>
+            <%end%>
+              <% award.categories.each do |category| %>
+              <li><%= category.name %></li>
+          <%end%><br>
+          <button class="btn btn-default"><%= link_to 'Delete Award', award,  :data => {:confirm => "You Sure?", :method => :delete}  %></button></li><br><br>
           <%end%>
       <button class="btn btn-default"><%= link_to 'Edit', edit_car_path(car) %></button>
       <button class="btn btn-default"><%= link_to 'Delete', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
