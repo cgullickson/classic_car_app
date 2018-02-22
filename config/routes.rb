@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
   root 'welcome#home'
+  get 'classic', action: :classic, controller: 'cars'
   resources :users do
     resources :cars
   end
@@ -13,4 +14,7 @@ Rails.application.routes.draw do
   resources :cars do
     resources :awards
   end
+
+
+
 end
