@@ -3,7 +3,8 @@ class AwardsController < ApplicationController
 
 
   def new
-    @award = @car.awards.new
+    #raise params.inspect
+    @award = @car.awards.build
     2.times {@award.categories.build}
   end
 
@@ -33,10 +34,10 @@ class AwardsController < ApplicationController
   private
 
   def award_params
-    params.require(:award).permit(:title, :description, categories_attributes: [:id, :name, :_destroy])
+    params.require(:award).permit(:title, :description, :car_id, categories_attributes: [:id, :name, :_destroy])
   end
 
   def set_car
-    @car = Car.find_by(params[:id])
+    @car = Car.find_by(id: params[:car_id])
   end
 end
