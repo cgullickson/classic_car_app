@@ -2,7 +2,7 @@
 <h1> Classic Car Collections' Truest Classics! </h1>
 
 <% @cars.each do |car| %>
-  <h2> <%= link_to "#{car.make} #{car.model}", car_path(car) %></h2>
+  <h2> <%= "#{car.make} #{car.model}" %></h2>
   <h2> <%= car.year%></h2>
   <h2> <%= car.color %></h2>
   <h2> <%= car.user.email %></h2>
