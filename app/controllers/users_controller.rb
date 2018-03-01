@@ -17,4 +17,10 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def cars_index
+    @user = User.find(params[:id])
+    @cars = @user.cars
+    render template: 'cars/show'
+  end
+
 end

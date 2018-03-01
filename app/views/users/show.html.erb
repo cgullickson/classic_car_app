@@ -17,7 +17,7 @@
             <p>Categories:</p><br>
             <%end%>
               <% award.categories.each do |category| %>
-              <li><%= category.name %></li>
+              <li><h5><%= category.name %></h5></li>
           <%end%><br>
           <button class="btn btn-default"><%= link_to 'Delete Award', award,  :data => {:confirm => "You Sure?", :method => :delete}  %></button></li><br><br>
           <%end%>

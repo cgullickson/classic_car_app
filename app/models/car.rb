@@ -4,7 +4,6 @@ class Car < ApplicationRecord
   has_many :categories, through: :awards
   validates :year, length: {is: 4}
 
-  scope :made_before, ->(year) { where("cars.created_at < ?", year) }
-  scope :made_since, ->(year) { where("cars.created_at > ?", year) }
+  scope :classic, ->(time) { where("cars.year < ?", time)}
 
 end

@@ -11,7 +11,7 @@ class CarsController < ApplicationController
   end
 
   def classic
-    @cars = Car.classic(1987)
+    @cars = Car.made_since(2000)
   end
 
   def create
@@ -19,7 +19,7 @@ class CarsController < ApplicationController
     current_user.cars << @car
     if @car.valid?
       @car.save
-      redirect_to user_cars_path(current_user)
+      redirect_to current_user
     else
       render :new
     end
@@ -32,7 +32,7 @@ class CarsController < ApplicationController
     @car.update(car_params)
     if @car.valid?
       @car.save
-      redirect_to user_cars_path(current_user)
+      redirect_to user_path(current_user)
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    redirect_to user_cars_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private
