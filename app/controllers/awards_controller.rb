@@ -16,7 +16,7 @@ class AwardsController < ApplicationController
     @award = @car.awards.new(award_params)
     if @award.valid?
       @award.save
-      redirect_to user_path(current_user)
+      redirect_to user_cars_path(current_user)
     else
       render :new
     end
@@ -26,16 +26,15 @@ class AwardsController < ApplicationController
   end
 
   def destroy
-    @car = Car.find_by(id: params[:car_id])
-    @award = @car.awards.find(params[:id])
+    @award = Award.find(params[:id])
     @award.destroy
-    redirect_to user_path(current_user)
+    redirect_to user_cars_path(current_user)
   end
 
   private
 
   def award_params
-    params.require(:award).permit(:title, :description, :car_id, categories_attributes: [:id, :name, :_destroy])
+    params.require(:award).permit(:title, :description, :car_id, categories_attributes: [:id, :name, :_destroy], category_ids:[])
   end
 
   def set_car

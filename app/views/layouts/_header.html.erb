@@ -3,6 +3,7 @@
 
 <button class="btn btn-default"><%= link_to "Home", root_path %></button>
 <button class="btn btn-default"><%= link_to "All Cars", cars_path %></button>
+<button class="btn btn-default"><%= link_to "Classics", "/classic" %></button>
 <% if user_signed_in? %>
   <button class="btn btn-default"><%= link_to "My Cars", user_cars_path(current_user) %></button>
   <button class="btn btn-default"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></button><br><br>

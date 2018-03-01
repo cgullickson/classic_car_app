@@ -2,9 +2,22 @@
 <h1> All Cars: </h1>
 
 <% @cars.each do |car| %>
-  <h2> <%= link_to "#{car.make} #{car.model}", car_path(car) %></h2>
+  <h2> <%="#{car.make} #{car.model}"%></h2>
   <h2> <%= car.year%></h2>
   <h2> <%= car.color %></h2>
   <h2> <%= car.user.email %></h2>
   <br><br>
+  <% if car.awards.any? %>
+  <h2>Awards:</h2>
+  <% end %>
+    <% car.awards.each do |award| %>
+    <h3><%= award.title %></h3>
+    <h4><%= award.description %></h4>
+      <% if award.categories.any? %>
+      <p>Categories:</p>
+      <%end%>
+        <% award.categories.each do |category| %>
+        <h5><%= category.name %></h5>
+    <%end%><br>
+    <%end%>
 <% end %>

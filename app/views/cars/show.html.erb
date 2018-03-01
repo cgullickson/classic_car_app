@@ -20,6 +20,7 @@
               <h5><%= category.name %></h5>
           <%end%><br>
           <%end%>
+
       <button class="btn btn-default"><%= link_to 'Edit', edit_car_path(car) %></button>
       <button class="btn btn-default"><%= link_to 'Delete', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
       <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
