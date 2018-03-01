@@ -11,13 +11,13 @@
       <h2>Awards:</h2>
       <% end %>
           <% car.awards.each do |award| %>
-          <h3><%= award.title %></h3>
-          <h4><%= award.description %></h4>
+          <h3>-<%= award.title %></h3>
+          <h4>-<%= award.description %></h4>
             <% if award.categories.any? %>
             <p>Categories:</p>
             <%end%>
               <% award.categories.each do |category| %>
-              <h5><%= category.name %></h5>
+              <h5>-<%= category.name %></h5>
           <%end%>
           <button class="btn btn-default"><%= link_to 'Delete Award', car_award_path(award),  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
           <br><br>
