@@ -26,7 +26,7 @@ class AwardsController < ApplicationController
   end
 
   def destroy
-    @award = Award.find(params[:id])
+    @award = Award.find(params[:car_id])
     @award.destroy
     redirect_to user_cars_path(current_user)
   end
