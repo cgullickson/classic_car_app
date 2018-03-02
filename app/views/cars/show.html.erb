@@ -6,7 +6,8 @@
     <% @cars.each do |car| %>
     <h2> <%= "#{car.make} #{car.model}"%></h2>
     <h2> <%= car.year%></h2>
-    <h2> <%= car.color %></h2>
+    <h2> <%= car.color %></h2><br>
+    <%= image_tag(car.image.url) %><br><br>
       <% if car.awards.any? %>
       <h2>Awards:</h2>
       <% end %>
@@ -19,6 +20,7 @@
               <% award.categories.each do |category| %>
               <h5>-<%= category.name %></h5>
           <%end%>
+
           <button class="btn btn-default"><%= link_to 'Delete Award', car_award_path(award),  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
           <br><br>
           <%end%>

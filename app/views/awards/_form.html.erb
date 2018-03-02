@@ -23,6 +23,8 @@
   <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
   <ul>
     <%= f.fields_for :categories, @award.categories.build do |categories_fields| %>
+      <%= f.label :add_your_own %>
+      <%= categories_fields.text_field :name %>
       <%= categories_fields.text_field :name %>
     <% end %>
   </ul>

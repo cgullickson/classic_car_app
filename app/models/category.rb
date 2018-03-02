@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :award
-  has_one :car, through: :award 
+  has_many :award_categories
+  has_many :awards, through: :award_categories
+  has_one :car, through: :award
 end

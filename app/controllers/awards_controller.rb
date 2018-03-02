@@ -5,7 +5,6 @@ class AwardsController < ApplicationController
   def new
     #raise params.inspect
     @award = @car.awards.build
-    2.times {@award.categories.build}
   end
 
   def index

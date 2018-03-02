@@ -5,7 +5,8 @@
   <h2> <%="#{car.make} #{car.model}"%></h2>
   <h2> <%= car.year%></h2>
   <h2> <%= car.color %></h2>
-  <h2> <%= car.user.email %></h2>
+  <h2> <%= car.user.email %></h2><br>
+  <%= image_tag(car.image.url) %><br>
   <% if car.awards.any? %>
   <h2>Awards:</h2>
   <% end %>
@@ -19,4 +20,7 @@
         <h5>-<%= category.name %></h5>
     <%end%><br>
     <%end%>
+
+    <%= link_to(image_tag(car.image.url(:thumb)), car.image.url, target: '_blank') if car.image.exists? %>
+
 <% end %>
