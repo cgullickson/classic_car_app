@@ -1,38 +1,26 @@
 <%= render 'layouts/header' %>
-<h1>Your Cars:</h1>
 
-<ul>
-  <% if user_signed_in? %>
-    <% @cars.each do |car| %>
-    <h2> <%= "#{car.make} #{car.model}"%></h2>
-    <h2> <%= car.year%></h2>
-    <h2> <%= car.color %></h2><br>
-    <%= image_tag(car.image.url) %><br><br>
-      <% if car.awards.any? %>
-      <h2>Awards:</h2>
-      <% end %>
-          <% car.awards.each do |award| %>
-          <h3>-<%= award.title %></h3>
-          <h4>-<%= award.description %></h4>
-            <% if award.categories.any? %>
-            <p>Categories:</p>
-            <%end%>
-              <% award.categories.each do |category| %>
-              <h5>-<%= category.name %></h5>
-          <%end%>
+<% if @car %>
+  <a href="#" class="js-next" data-id="<%=@car.id%>">Next Car</a>
+  <h1 class="carMake"><%= @car.make %></h1>
+  <h1 class="carModel"><%= @car.model %></h1>
+  <p class="carYear"><%= @car.year %></p>
+  <p class="carColor"><%= @car.color %></p>
+<% end %>
 
-          <button class="btn btn-default"><%= link_to 'Delete Award', car_award_path(award),  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-          <br><br>
-          <%end%>
-
-      <button class="btn btn-default"><%= link_to 'Edit Car', edit_car_path(car) %></button>
-      <button class="btn btn-default"><%= link_to 'Delete Car', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-      <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
-
-  <%end%>
-<%end%>
-</ul>
-
-<% if user_signed_in? %>
-  <button class="btn btn-default"><%=link_to "Add a car", new_user_car_path(current_user)%></button>
-<%end%>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function () {
+  $(".js-next").click(function(event) {
+    event.preventDefault();
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/cars/" + nextId + ".json", function(data) {
+      $(".carMake").text(data["make"]);
+      $(".carModel").text(data["model"]);
+      $(".carYear").text(data["year"]);
+      $(".carColor").text(data["color"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>

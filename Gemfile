@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'jquery-rails'
+
+gem 'active_model_serializers'
+
+gem 'dotenv-rails'
+
 gem 'omniauth-facebook'
 
 gem "paperclip", "~> 5.1"

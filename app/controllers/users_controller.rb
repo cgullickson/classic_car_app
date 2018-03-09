@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def cars_index
     @user = User.find(params[:id])
     @cars = @user.cars
-    render template: 'cars/show'
+    render template: 'cars/all'
   end
 
 end
