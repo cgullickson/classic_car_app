@@ -1,5 +1,5 @@
 class AwardsController < ApplicationController
-  before_action :set_car, only: [:new, :create]
+  before_action :set_car, only: [:new, :create, :show, :index]
 
 
   def new
@@ -8,7 +8,8 @@ class AwardsController < ApplicationController
   end
 
   def index
-    @awards = Award.all
+    @awards = @car.awards
+    render :json => @awards
   end
 
   def create
@@ -22,6 +23,7 @@ class AwardsController < ApplicationController
   end
 
   def show
+    @awards = @car.awards
   end
 
   def destroy

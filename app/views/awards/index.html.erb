@@ -1,0 +1,13 @@
+<% if @car.awards.any? %>
+<h2>Awards:</h2>
+<% end %>
+    <% @car.awards.each do |award| %>
+    <h3>-<%= award.title %></h3>
+    <h4>-<%= award.description %></h4>
+      <% if award.categories.any? %>
+      <p>Categories:</p>
+      <%end%>
+        <% award.categories.each do |category| %>
+        <h5>-<%= category.name %></h5>
+    <%end%>
+<%end%>
