@@ -1,8 +1,8 @@
 $("#addCategory").html('<%= j render "categories/new" %>');
 $("#new_category").submit(function(event) {
 	event.preventDefault();
-	var name = $('#category_name').val();
-	var params = $(this).serialize();
+	let name = $('#category_name').val();
+	let params = $(this).serialize();
 	if ( name === ""){
 		$('#name .help-block').remove();
 		$('#name').prepend(`<div class="help-block">Please enter a name.</div>`);
@@ -13,8 +13,8 @@ $("#new_category").submit(function(event) {
 	      url: '/categories',
 	  	  data: params
 	    }).done(function(data) {
-	    	var newCategory = new Category(data);
-	    	var categoryHtml = newCategory.formatDisplay();
+	    	let newCategory = new Category(data);
+	    	let categoryHtml = newCategory.formatDisplay();
 	    	$("#newCategory").remove();
 	    	$('#categories').append(categoryHtml);
 		});
@@ -27,6 +27,6 @@ function Category(category) {
 }
 
 Category.prototype.formatDisplay = function() {
-	var categoryHtml = `<div><h2><a href="${this.url}">${this.name}</a></h2></div>`
+	let categoryHtml = `<div><h2><a href="${this.url}">${this.name}</a></h2></div>`
 	return categoryHtml;
 };
