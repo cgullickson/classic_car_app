@@ -9,11 +9,11 @@
     <h2> <%= car.color %></h2><br>
     <%= image_tag(car.image.url) if car.image.exists? %><br><br>
 
-    <p><%= link_to "Load Awards", car_awards_path(car), :class => "load_awards" %></p>
+    <button class="btn btn-default"><%= link_to "Load Awards", car_awards_path(car), :class => "load_awards" %></button><br><br>
 
     <div class="awards">
       <ol>
-        
+
       </ol>
     </div>
 

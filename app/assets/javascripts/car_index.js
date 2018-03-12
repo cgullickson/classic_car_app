@@ -9,7 +9,7 @@ $(function(){
       $ol.html("")
 
       json.forEach(function(award){
-        $ol.append("<li>" + award.title + "</li>");
+        $ol.append("<li>" + award.title + "</li><br>");
       })
     })
 

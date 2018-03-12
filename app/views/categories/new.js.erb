@@ -6,7 +6,7 @@ $("#new_category").submit(function(event) {
 	if ( name === ""){
 		$('#name .help-block').remove();
 		$('#name').prepend(`<div class="help-block">Please enter a name.</div>`);
-	}else {
+	} else {
 
 		$.ajax({
 	      type: "POST",
