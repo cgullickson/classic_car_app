@@ -1,11 +1,11 @@
-<%= render 'layouts/header' %>
+<%= render 'layouts/header' %><br>
 
 <% if @car %>
-  <a href="#" class="js-next" data-id="<%=@car.id%>">Next Car</a>
+  <button class="btn btn-default"><a href="#" class="js-next" data-id="<%=@car.id%>">Next Car</a></button>
   <h1 class="carMake"><%= @car.make %></h1>
   <h1 class="carModel"><%= @car.model %></h1>
-  <p class="carYear"><%= @car.year %></p>
-  <p class="carColor"><%= @car.color %></p>
+  <h2 class="carYear"><%= @car.year %></h2>
+  <h2 class="carColor"><%= @car.color %></h2>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
