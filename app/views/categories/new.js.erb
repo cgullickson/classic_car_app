@@ -1,0 +1,32 @@
+$("#addCategory").html('<%= j render "categories/new" %>');
+$("#new_category").submit(function(event) {
+	event.preventDefault();
+	var name = $('#category_name').val();
+	var params = $(this).serialize();
+	if ( name === ""){
+		$('#name .help-block').remove();
+		$('#name').prepend(`<div class="help-block">Please enter a name.</div>`);
+	}else {
+
+		$.ajax({
+	      type: "POST",
+	      url: '/categories',
+	  	  data: params
+	    }).done(function(data) {
+	    	var newCategory = new Category(data);
+	    	var categoryHtml = newCategory.formatDisplay();
+	    	$("#newCategory").remove();
+	    	$('#categories').append(categoryHtml);
+		});
+	};
+});
+
+function Category(category) {
+	this.name = category.name
+	this.url = '/categories/' + category.id
+}
+
+Category.prototype.formatDisplay = function() {
+	var categoryHtml = `<div><h2><a href="${this.url}">${this.name}</a></h2></div>`
+	return categoryHtml;
+};

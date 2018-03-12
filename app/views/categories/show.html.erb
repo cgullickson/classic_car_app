@@ -1,0 +1,10 @@
+<%= render 'layouts/header' %>
+<h1>Categories</h1>
+
+<% if @category %>
+	<a href="#" class="js-next" data-id="<%=@category.id%>">Next Category</a>
+	<p class="name"><%= @category.name %></p>
+  <div>
+    <button class="btn btn-default"><%= link_to "Delete Category", @category,  :data => {:confirm => "You Sure?", :method => :delete} %></button><br><br>
+  </div>
+<% end %>
