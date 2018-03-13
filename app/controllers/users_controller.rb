@@ -23,4 +23,10 @@ class UsersController < ApplicationController
     render template: 'cars/all'
   end
 
+  def car_index
+    @user = current_user
+    @cars = @user.cars
+    render :json => @cars
+  end
+
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
   root 'welcome#home'
   get 'classic', action: :classic, controller: 'cars'
+  get 'car_index', action: :car_index, controller: 'users'
   resources :users do
     resources :cars
   end
