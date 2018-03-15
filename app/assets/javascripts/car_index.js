@@ -1,6 +1,5 @@
-
 $(function(){
-  $("a.load_awards").on("click", function(e){
+  $("a.load_awards_" + id).on("click", function(e){
 
     e.preventDefault()
 
@@ -13,7 +12,5 @@ $(function(){
       })
     })
 
-
 })
-
 })

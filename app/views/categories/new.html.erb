@@ -1,0 +1,32 @@
+<%= form_for @category do |f| %>
+		<%= f.text_field :name %>
+	<%= f.submit "Create Category", id: :create_category %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+	$(function () {
+	  $('form').submit(function () {
+	    event.preventDefault()
+	    var values = $(this).serialize()
+
+	    var posting = $.post('/categories', values)
+
+	    posting.done(function(data) {
+				let newCategory = new Category(data);
+				let categoryHtml = newCategory.formatDisplay();
+				$("#newCategory").remove();
+				$('#categories').append(categoryHtml);
+	    })
+	  });
+	});
+
+	function Category(category) {
+	this.name = category.name
+	this.url = '/categories/' + category.id
+	}
+
+	Category.prototype.formatDisplay = function() {
+		let categoryHtml = `<div><h2><a href="${this.url}">${this.name}</a></h2></div>`
+		return categoryHtml;
+	};
+</script>

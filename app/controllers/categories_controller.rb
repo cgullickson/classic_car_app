@@ -1,15 +1,13 @@
-
 class CategoriesController < ApplicationController
 
 	def index
 		@categories = Category.all
+		@category = Category.new
 	end
 
 	def new
 		@category = Category.new
-		respond_to do |format|
-	      format.js
-	    end
+		render layout: false
 	end
 
 	def create
