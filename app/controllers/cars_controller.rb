@@ -41,7 +41,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @car}
+      format.json {render json: @car, status: 200}
     end
   end
 

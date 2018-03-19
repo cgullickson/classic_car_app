@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @cars = @user.cars
   end
 
   def destroy
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   def car_index
     @user = current_user
     @cars = @user.cars
-    render :json => @cars
+    render json: @cars
   end
 
 end

@@ -1,30 +1,19 @@
 <%= render 'layouts/header' %>
 <h1>All Cars:</h1>
+<% @cars.each do |car| %>
+  <h3><%= car.make + " " + car.model %></h3>
+  <div id="car-<%= car.id %>"></div>
+  <button class="js-more" data-id="<%= car.id %>">More Info</button>
+<% end %>
 
-<ul>
-  <% if user_signed_in? %>
-    <% @cars.each do |car| %>
-    <h2> <%= link_to "#{car.make} #{car.model}", car_path(car)%></h2>
-    <h2> <%= car.year%></h2>
-    <h2> <%= car.color %></h2><br>
-    <%= image_tag(car.image.url) if car.image.exists? %><br><br>
-
-    <button class="btn btn-default"><%= link_to "Load Awards", car_awards_path(car), :class => "load_awards" %></button><br><br>
-
-    <div class="awards">
-      <ol>
-
-      </ol>
-    </div>
-
-      <button class="btn btn-default"><%= link_to 'Edit Car', edit_car_path(car) %></button>
-      <button class="btn btn-default"><%= link_to 'Delete Car', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-      <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
-
-  <%end%>
-<%end%>
-</ul>
-
-<% if user_signed_in? %>
-  <button class="btn btn-default"><%=link_to "Add a car", new_user_car_path(current_user)%></button>
-<%end%>
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/cars/" + id + ".json", function(data) {
+        var descriptionText = "<p>" + data["color"] + "</p><p>" + data["year"] + "</p>";
+        $("#car-" + id).html(descriptionText);
+    });
+  });
+});
+</script>
