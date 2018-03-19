@@ -27,6 +27,7 @@ function Car(car, url) {
     this.make = car.make;
     this.model = car.model;
 
+    // debugger
     if (car.awards) {
         this.awards = car.awards.map(award => new Award(award));
     }
@@ -39,7 +40,7 @@ Car.prototype.formatDisplay = function() {
 		var awardListItem = this.formatDisplay()
 		awardsHtml += awardListItem
 	});
-	var carHtml = `<div><a href='${this.carUrl}'>${this.make} ${this.model} </a></div>
+	var carHtml = `<div>${this.make} ${this.model}</a></div>
 											<div>Awards:</div>
 											<ul>${awardsHtml}</ul>`;
 	return carHtml;
