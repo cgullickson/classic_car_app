@@ -7,9 +7,9 @@
 	$(function () {
 	  $('form').submit(function () {
 	    event.preventDefault()
-	    var values = $(this).serialize()
+	    let values = $(this).serialize()
 
-	    var posting = $.post('/categories', values)
+	    let posting = $.post('/categories', values)
 
 	    posting.done(function(data) {
 				let newCategory = new Category(data);

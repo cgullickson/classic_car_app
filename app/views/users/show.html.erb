@@ -3,6 +3,7 @@
 <h1><%= @user.email %></h1><br>
 
 <button class="btn btn-default"><%= link_to "Load Cars", car_index_path(@user), :class => "loadCars" %></button><br><br>
+<button class="btn btn-default"><%= link_to "Cars With Two Or More Awards", car_index_path(@user), :class => "twoOrMore" %></button><br><br>
 
 <div class="cars">
   <ol>

@@ -1,10 +1,29 @@
 <%= render 'layouts/header' %>
 <h1>All Cars:</h1>
+
+
 <% @cars.each do |car| %>
-  <h3><%= car.make + " " + car.model %></h3>
-  <div id="car-<%= car.id %>"></div>
-  <button class="js-more" data-id="<%= car.id %>">More Info</button>
-<% end %>
+<div class="car-card">
+  <h1> <%= link_to "#{car.make} #{car.model}", car_path(car)%></h1>
+  <h2> <%= car.year%></h2>
+  <h2> <%= car.color %></h2><br>
+  <%= image_tag(car.image.url, :class => "car-image") if car.image.exists?%><br><br>
+    <% if car.awards.any? %>
+    <p>Awards:</p>
+    <% end %>
+        <% car.awards.each do |award| %>
+        <p><%= award.title %></p>
+        <p><%= award.description %></p>
+          <% if award.categories.any? %>
+          <p>Categories:</p>
+          <%end%>
+            <% award.categories.each do |category| %>
+            <p><%= category.name %></p>
+        <%end%>
+        <%end%>
+
+  </div>
+<%end%>
 
 <script type="text/javascript" charset="utf-8">
 $(function() {

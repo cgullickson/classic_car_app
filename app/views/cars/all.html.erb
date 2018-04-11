@@ -1,38 +1,42 @@
 <%= render 'layouts/header' %>
 <h1>Your Cars:</h1>
-
-<ul>
   <% if user_signed_in? %>
     <% @cars.each do |car| %>
-    <h2> <%= link_to "#{car.make} #{car.model}", car_path(car)%></h2>
-    <h2> <%= car.year%></h2>
-    <h2> <%= car.color %></h2><br>
-    <%= image_tag(car.image.url) if car.image.exists? %><br><br>
-      <% if car.awards.any? %>
-      <h2>Awards:</h2>
-      <% end %>
-          <% car.awards.each do |award| %>
-          <h3>-<%= award.title %></h3>
-          <h4>-<%= award.description %></h4>
-            <% if award.categories.any? %>
-            <p>Categories:</p>
+    <div class="car-card">
+      <h1> <%= link_to "#{car.make} #{car.model}", car_path(car)%></h1>
+      <p> <%= car.year%></p>
+      <p> <%= car.color %></p><br>
+      <%= image_tag(car.image.url, :class => "car-image") if car.image.exists?%><br><br>
+        <% if car.awards.any? %>
+        <p>Awards:</p>
+        <% end %>
+            <% car.awards.each do |award| %>
+            <p><%= award.title %></p>
+            <p><%= award.description %></p>
+              <% if award.categories.any? %>
+              <p>Categories:</p>
+              <%end%>
+                <% award.categories.each do |category| %>
+                <p><%= category.name %></p>
             <%end%>
-              <% award.categories.each do |category| %>
-              <h5>-<%= category.name %></h5>
-          <%end%>
 
-          <button class="btn btn-default"><%= link_to 'Delete Award', car_award_path(award),  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-          <br><br>
-          <%end%>
+            <button class="btn btn-default"><%= link_to 'Delete Award', car_award_path(award),  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
+            <br><br>
+            <%end%>
 
-      <button class="btn btn-default"><%= link_to 'Edit Car', edit_car_path(car) %></button>
-      <button class="btn btn-default"><%= link_to 'Delete Car', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
-      <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
-
+        <button class="btn btn-default"><%= link_to 'Edit Car', edit_car_path(car) %></button>
+        <button class="btn btn-default"><%= link_to 'Delete Car', car,  :data => {:confirm => "You Sure?", :method => :delete}  %></button>
+        <button class="btn btn-default"><%= link_to 'Add Award', new_car_award_path(car) %></button>
+      </div>
   <%end%>
 <%end%>
-</ul>
+<br>
+<br>
 
 <% if user_signed_in? %>
   <button class="btn btn-default"><%=link_to "Add a car", new_user_car_path(current_user)%></button>
 <%end%>
+<br>
+<br>
+<br>
+<br>

@@ -1,23 +1,25 @@
 <%= render 'layouts/header' %>
-<h1> Classic Car Collections' Classics! </h1>
+<h1> Classic Car Collections' Top Classics! </h1>
 
 <% @cars.each do |car| %>
-  <h2> <%= "#{car.make} #{car.model}" %></h2>
+<div class="car-card">
+  <h1> <%= link_to "#{car.make} #{car.model}", car_path(car)%></h1>
   <h2> <%= car.year%></h2>
-  <h2> <%= car.color %></h2>
-  <h2> <%= car.user.email %></h2>
+  <h2> <%= car.color %></h2><br>
+  <%= image_tag(car.image.url, :class => "car-image") if car.image.exists?%><br><br>
+    <% if car.awards.any? %>
+    <p>Awards:</p>
+    <% end %>
+        <% car.awards.each do |award| %>
+        <p><%= award.title %></p>
+        <p><%= award.description %></p>
+          <% if award.categories.any? %>
+          <p>Categories:</p>
+          <%end%>
+            <% award.categories.each do |category| %>
+            <p><%= category.name %></p>
+        <%end%>
+        <%end%>
 
-  <% if car.awards.any? %>
-  <h2>Awards:</h2>
-  <% end %>
-    <% car.awards.each do |award| %>
-    <h3>-<%= award.title %></h3>
-    <h4>-<%= award.description %></h4>
-      <% if award.categories.any? %>
-      <p>Categories:</p>
-      <%end%>
-        <% award.categories.each do |category| %>
-        <h5>-<%= category.name %></h5>
-    <%end%><br>
-    <%end%>
-<% end %>
+  </div>
+<%end%>

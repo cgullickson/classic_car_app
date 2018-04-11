@@ -1,4 +1,5 @@
 <%= form_for @car do |f| %>
+<div class="new-car-card">
 
 <% if @car.errors.any? %>
   <div id="error_explanation">
@@ -12,21 +13,22 @@
   </div>
 <% end %>
 
-  <%= f.label :make %>
+  <%= f.label :make %><br>
   <%= f.text_field :make %><br>
 
-  <%= f.label :model %>
+  <%= f.label :model %><br>
   <%= f.text_field :model %><br>
 
-  <%= f.label :color %>
+  <%= f.label :color %><br>
   <%= f.text_field :color %><br>
 
-  <%= f.label :year %>
+  <%= f.label :year %><br>
   <%= f.text_field :year %><br>
 
-  <%= f.label :image %>
-  <%= f.file_field :image %>
+  <%= f.label :image %><br>
+  <%= f.file_field :image %><br>
 
   <%= f.submit %>
 
 <%end%>
+</div>

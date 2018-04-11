@@ -11,6 +11,8 @@ gem 'active_model_serializers'
 
 gem 'dotenv-rails'
 
+gem 'materialize-sass'
+
 gem 'omniauth-facebook'
 
 gem "paperclip", "~> 5.1"
